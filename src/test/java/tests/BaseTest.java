@@ -1,6 +1,6 @@
 package tests;
 
-import lombok.extern.log4j.Log4j2;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
@@ -8,15 +8,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
+import tests.test_data.TestConstants;
 import utils.CapabilitiesGenerator;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.testng.Assert.fail;
-
-@Log4j2
-
-public class BaseTest {
+public class BaseTest implements TestConstants  {
     WebDriver driver;
     LoginPage loginPage;
     ProductPage productPage;
@@ -28,16 +25,19 @@ public class BaseTest {
 
     @BeforeMethod(description = "Setting up before test")
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "src/test/java/resources/webdrivers/chromedriver");
+        WebDriverManager.chromedriver().setup();
         try {
             driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         } catch (SessionNotCreatedException e) {
-            fail("Browser is not opened. Check if correct version is in use");
+            fail("Browser is not opened");
             log.fatal(e.getLocalizedMessage());
         }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         createInstances();
+    }
+
+    private void fail(String s) {
     }
 
     @AfterMethod(alwaysRun = true, description = "Closing browser")
