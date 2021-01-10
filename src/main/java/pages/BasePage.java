@@ -19,5 +19,5 @@ abstract class BasePage implements Constants {
         driver.get(url);
     }
 
-    public abstract void waitForPageOpened();
+    public abstract BasePage waitForPageOpened();
 }

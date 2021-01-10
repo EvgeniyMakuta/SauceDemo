@@ -23,27 +23,31 @@ public class LoginPageFactory extends BasePage {
         super(driver);
     }
 
-    public void openPage() {
+    public LoginPageFactory openPage() {
         openPage(BASE_URL);
+        return this;
     }
 
     @Override
-    public void waitForPageOpened() {
+    public LoginPageFactory waitForPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOf(loginBtn));
         } catch (TimeoutException e) {
             fail("Page is not loaded. Not found locator: " + loginBtn);
         }
+        return this;
     }
 
-    public void login(String username, String password) {
+    public ProductPage login(String username, String password) {
         attemptToLogin(username, password);
+        return new ProductPage(driver);
     }
 
-    public void attemptToLogin(String username, String password) {
+    public LoginPageFactory attemptToLogin(String username, String password) {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginBtn.click();
+        return this;
     }
 
     public String getErrorMessage() {
