@@ -2,6 +2,7 @@ package pages;
 
 import constants.Constants;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 abstract class BasePage implements Constants {
@@ -11,6 +12,7 @@ abstract class BasePage implements Constants {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 20);
+        PageFactory.initElements(driver, this);
     }
 
     public void openPage(String url) {

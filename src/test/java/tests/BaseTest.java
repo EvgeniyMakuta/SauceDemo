@@ -21,6 +21,7 @@ public class BaseTest implements TestConstants  {
     ItemPage itemPage;
     CheckoutInfoPage checkoutInfoPage;
     CheckoutOverviewPage checkoutOverviewPage;
+    LoginPageFactory loginPageFactory;
     private Logger log;
 
     @BeforeMethod(description = "Setting up before test")
@@ -54,5 +55,6 @@ public class BaseTest implements TestConstants  {
         itemPage = new ItemPage(driver);
         checkoutInfoPage = new CheckoutInfoPage(driver);
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
+        loginPageFactory = new LoginPageFactory(driver);
     }
 }

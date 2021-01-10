@@ -9,18 +9,18 @@ public class LoginTest extends BaseTest {
 
     @Test(description = "Entering valid credentials to login")
     public void isSuccessfulLogin() {
-        loginPage.openPage();
-        loginPage.waitForPageOpened();
-        loginPage.login(USERNAME, PASSWORD);
-        productPage.waitForPageOpened();
+        loginPageFactory.openPage();
+        loginPageFactory.waitForPageOpened();
+        loginPageFactory.login(USERNAME, PASSWORD);
+        loginPageFactory.waitForPageOpened();
     }
 
     @Test(description = "Error message should appear when logging with invalid credentials", dataProvider = "InvalidTestDataFotLogin")
     public void errorMessageShouldAppearWhenLogging(String username, String password, String errorMessage) {
-        loginPage.openPage();
-        loginPage.waitForPageOpened();
-        loginPage.attemptToLogin(username, password);
-        String actualErrorMessage = loginPage.getErrorMessage();
+        loginPageFactory.openPage();
+        loginPageFactory.waitForPageOpened();
+        loginPageFactory.attemptToLogin(username, password);
+        String actualErrorMessage = loginPageFactory.getErrorMessage();
         assertEquals(actualErrorMessage, errorMessage, "Invalid error message is displayed: " + actualErrorMessage);
     }
 
