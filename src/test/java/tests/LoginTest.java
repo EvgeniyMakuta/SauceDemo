@@ -4,26 +4,23 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-import static tests.base.Constants.*;
 
 public class LoginTest extends BaseTest {
 
     @Test(description = "Entering valid credentials to login")
     public void isSuccessfulLogin() {
         loginPage.openPage();
-        loginPage.isPageOpened();
+        loginPage.waitForPageOpened();
         loginPage.login(USERNAME, PASSWORD);
-        productPage.isPageOpened();
-// add assert?
+        productPage.waitForPageOpened();
     }
 
     @Test(description = "Error message should appear when logging with invalid credentials", dataProvider = "InvalidTestDataFotLogin")
     public void errorMessageShouldAppearWhenLogging(String username, String password, String errorMessage) {
         loginPage.openPage();
-        loginPage.isPageOpened();
+        loginPage.waitForPageOpened();
         loginPage.attemptToLogin(username, password);
         String actualErrorMessage = loginPage.getErrorMessage();
-
         assertEquals(actualErrorMessage, errorMessage, "Invalid error message is displayed: " + actualErrorMessage);
     }
 
@@ -36,5 +33,4 @@ public class LoginTest extends BaseTest {
                 {"", "", "Epic sadface: Username is required"}
         };
     }
-
 }
