@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>SauceDemo</artifactId>
+    <artifactId>SauceDemoN</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
         <selenium.version>3.141.59</selenium.version>
