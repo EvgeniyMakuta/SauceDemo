@@ -1,4 +1,4 @@
 package tests;
 
-public class CheckoutInfoTest extends BaseTest{
+public class CheckoutInfoTest extends BaseTest {
 }

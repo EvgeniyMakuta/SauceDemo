@@ -17,27 +17,31 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void openPage() {
+    public LoginPage openPage() {
         openPage(BASE_URL);
+        return this;
     }
 
     @Override
-    public void waitForPageOpened() {
+    public LoginPage waitForPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
         } catch (TimeoutException e) {
             fail("Page is not loaded. Not found locator: " + LOGIN_BUTTON);
         }
+        return this;
     }
 
-    public void login(String username, String password) {
+    public ProductPage login(String username, String password) {
         attemptToLogin(username, password);
+        return new ProductPage(driver);
     }
 
-    public void attemptToLogin(String username, String password) {
+    public LoginPage attemptToLogin(String username, String password) {
         driver.findElement(USERNAME_INPUT).sendKeys(username);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
+        return this;
     }
 
     public String getErrorMessage() {

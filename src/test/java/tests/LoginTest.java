@@ -4,22 +4,23 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import static pages.ProductPage.PRODUCT_LABEL_LOCATOR;
 
 public class LoginTest extends BaseTest {
 
     @Test(description = "Entering valid credentials to login")
     public void isSuccessfulLogin() {
-        loginPageFactory
-                .openPage()
+        loginPageFactory.openPage()
                 .waitForPageOpened()
                 .login(USERNAME, PASSWORD)
                 .waitForPageOpened();
+        assertTrue(productPage.isPageOpened(), "Product page is not opened. Locator is not found: " + PRODUCT_LABEL_LOCATOR);
     }
 
     @Test(description = "Error message should appear when logging with invalid credentials", dataProvider = "InvalidTestDataFotLogin")
     public void errorMessageShouldAppearWhenLogging(String username, String password, String errorMessage) {
-        loginPageFactory
-                .openPage()
+        loginPageFactory.openPage()
                 .waitForPageOpened()
                 .attemptToLogin(username, password);
         String actualErrorMessage = loginPageFactory.getErrorMessage();

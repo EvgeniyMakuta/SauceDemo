@@ -7,12 +7,14 @@ public class CheckoutOverviewPage extends BasePage {
         super(driver);
     }
 
-    public void openPage() {
+    public CheckoutOverviewPage openPage() {
 // will add later
+        return this;
     }
 
     @Override
-    public void waitForPageOpened() {
+    public CheckoutOverviewPage waitForPageOpened() {
 // will add later
+        return this;
     }
 }

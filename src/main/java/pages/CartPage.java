@@ -24,29 +24,34 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
-    public void openPage() {
+    public CartPage openPage() {
         openPage(BASE_URL + CART_ENDPOINT);
+        return this;
     }
 
     @Override
-    public void waitForPageOpened() {
+    public CartPage waitForPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_BTN_LOCATOR));
         } catch (TimeoutException e) {
             fail("Cart page is not loaded. Locator " + CHECKOUT_BTN_LOCATOR + " is not found");
         }
+        return this;
     }
 
-    public void clickCheckoutBtn() {
+    public CheckoutInfoPage clickCheckoutBtn() {
         driver.findElement(CHECKOUT_BTN_LOCATOR).click();
+        return new CheckoutInfoPage(driver);
     }
 
-    public void clickContinueShoppingBtn() {
+    public ProductPage clickContinueShoppingBtn() {
         driver.findElement(CONTINUE_SHOPPING_BTN_LOCATOR).click();
+        return new ProductPage(driver);
     }
 
-    public void removeItemFromCart(String productName) {
+    public CartPage removeItemFromCart(String productName) {
         driver.findElement(By.xpath(String.format(REMOVE_BTN_LOCATOR, productName))).click();
+        return this;
     }
 
     public String getItemPrice(String productName) {
@@ -67,8 +72,9 @@ public class CartPage extends BasePage {
         return result;
     }
 
-    public void openItemPageFromCart(String productName) {
+    public ItemPage openItemPageFromCart(String productName) {
         driver.findElement(By.xpath(String.format(ITEM_NAME_LOCATOR, productName))).click();
+        return new ItemPage(driver);
     }
 
     public int getNumberOfItemsInCart() {
@@ -76,7 +82,7 @@ public class CartPage extends BasePage {
         return itemsList.size();
     }
 
-    public boolean getItemNameFromList(String productName) {
+    public boolean isItemExistInCart(String productName) {
         List<WebElement> listOfItems = driver.findElements(ITEMS_LIST_IN_CART);
         for (WebElement element : listOfItems) {
             if (element.getText().contains(productName)) {
@@ -86,7 +92,7 @@ public class CartPage extends BasePage {
         return false;
     }
 
-    public boolean cartIsEmpty() {
+    public boolean isCartEmpty() {
         List<WebElement> listOfItems = driver.findElements(ITEMS_LIST_IN_CART);
         if (listOfItems.isEmpty()) {
             return true;

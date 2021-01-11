@@ -18,44 +18,55 @@ public class ItemPage extends BasePage {
         super(driver);
     }
 
-    public void openPage() {
+    public ItemPage openPage() {
         openPage(BASE_URL + SAUCE_LABS_BACKPACK_ITEM_ENDPOINT);
+        return this;
     }
 
     @Override
-    public void waitForPageOpened() {
+    public ItemPage waitForPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(BACK_BUTTON_LOCATOR));
         } catch (TimeoutException r) {
             fail("Item page " + getItemName() + " is not loaded");
         }
+        return this;
     }
 
     public String getItemName() {
         return driver.findElement(ITEM_NAME_LOCATOR).getText();
     }
 
-    public void clickBackButton() {
+    public ProductPage clickBackButton() {
         driver.findElement(BACK_BUTTON_LOCATOR).click();
+        return new ProductPage(driver);
     }
 
-    public void addItemToCart() {
+    public ItemPage addItemToCart() {
         driver.findElement(ADD_TO_CART_BUTTON_LOCATOR).click();
+        return this;
     }
 
-    public void removeItemFromCart() {
+    public ItemPage removeItemFromCart() {
         driver.findElement(REMOVE_BUTTON_LOCATOR).click();
+        return this;
     }
 
     public String getItemPrice() {
         return driver.findElement(ITEM_PRICE_LOCATOR).getText();
     }
 
-    public boolean addToCartBtnIsDisplayed() {
+    public boolean IsAddToCartBtnDisplayed() {
         return driver.findElement(ADD_TO_CART_BUTTON_LOCATOR).isDisplayed();
     }
 
-    public boolean removeBtnIsDisplayed() {
+    public boolean IsRemoveBtnDisplayed() {
         return driver.findElement(REMOVE_BUTTON_LOCATOR).isDisplayed();
+    }
+
+    public boolean isPageOpened() {
+        if (driver.findElement(BACK_BUTTON_LOCATOR).isDisplayed()) {
+            return true;
+        } else return false;
     }
 }

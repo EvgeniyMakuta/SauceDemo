@@ -20,40 +20,51 @@ public class ProductPage extends BasePage {
         super(driver);
     }
 
-    public void openPage() {
+    public ProductPage openPage() {
         openPage(BASE_URL + PRODUCTS_ENDPOINT);
+        return this;
     }
 
     @Override
-    public void waitForPageOpened() {
+    public ProductPage waitForPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_LABEL_LOCATOR));
         } catch (TimeoutException e) {
             fail("Product page is not loaded. Locator " + PRODUCT_LABEL_LOCATOR + " not found");
         }
+        return this;
     }
+     public boolean isPageOpened() {
+        if (driver.findElement(PRODUCT_LABEL_LOCATOR).isDisplayed()) {
+            return true;
+        } else return false;
+     }
 
-    public void addProductToCart(String productName) {
+    public ProductPage addProductToCart(String productName) {
         driver.findElement(By.xpath(String.format(ADD_TO_CART_BUTTON_LOCATOR, productName))).click();
+        return this;
     }
 
-    public void removeProductFromCart(String productName) {
+    public ProductPage removeProductFromCart(String productName) {
         driver.findElement(By.xpath(String.format(REMOVE_BUTTON_LOCATOR, productName))).click();
+        return this;
     }
 
-    public void clickShoppingCartIcon() {
+    public CartPage clickShoppingCartIcon() {
         driver.findElement(CART_ICON_LOCATOR).click();
+        return new CartPage(driver);
     }
 
-    public void openItemPage(String productName) {
+    public ItemPage openItemPage(String productName) {
         driver.findElement(By.xpath(String.format(PRODUCT_NAME_LOCATOR, productName))).click();
+        return new ItemPage(driver);
     }
 
     public String getShoppingCartNumberFromCounter() {
         return driver.findElement(SHOPPING_CART_COUNTER).getText();
     }
 
-    public boolean addToCartBtnNameIsDisplayed(String productName) {
+    public boolean IsAddToCartBtnNameDisplayed(String productName) {
         String actualButtonName = driver.findElement(By.xpath(String.format(ADD_TO_CART_BUTTON_LOCATOR, productName))).getText();
         if (actualButtonName.contains(ADD_TO_CART_BUTTON_NAME)) {
             return true;
@@ -61,7 +72,7 @@ public class ProductPage extends BasePage {
         return false;
     }
 
-    public boolean removeBtnNameIsDisplayed(String productName) {
+    public boolean IsRemoveBtnNameDisplayed(String productName) {
         String actualButtonName = driver.findElement(By.xpath(String.format(REMOVE_BUTTON_LOCATOR, productName))).getText();
         if (actualButtonName.contains(REMOVE_BUTTON_NAME)) {
             return true;

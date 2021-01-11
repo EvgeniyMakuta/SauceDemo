@@ -13,7 +13,9 @@ import utils.CapabilitiesGenerator;
 
 import java.util.concurrent.TimeUnit;
 
-public class BaseTest implements TestConstants  {
+import static org.testng.Assert.fail;
+
+public class BaseTest implements TestConstants {
     WebDriver driver;
     LoginPage loginPage;
     ProductPage productPage;
@@ -36,9 +38,6 @@ public class BaseTest implements TestConstants  {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         createInstances();
-    }
-
-    private void fail(String s) {
     }
 
     @AfterMethod(alwaysRun = true, description = "Closing browser")
