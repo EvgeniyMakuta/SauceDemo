@@ -8,13 +8,13 @@ public class CheckoutOverviewPage extends BasePage {
     }
 
     public CheckoutOverviewPage openPage() {
-// will add later
+//TODO: will add later
         return this;
     }
 
     @Override
     public CheckoutOverviewPage waitForPageOpened() {
-// will add later
+//TODO: will add later
         return this;
     }
 }

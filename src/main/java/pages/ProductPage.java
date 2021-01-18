@@ -64,19 +64,13 @@ public class ProductPage extends BasePage {
         return driver.findElement(SHOPPING_CART_COUNTER).getText();
     }
 
-    public boolean IsAddToCartBtnNameDisplayed(String productName) {
+    public boolean isAddToCartBtnNameDisplayed(String productName) {
         String actualButtonName = driver.findElement(By.xpath(String.format(ADD_TO_CART_BUTTON_LOCATOR, productName))).getText();
-        if (actualButtonName.contains(ADD_TO_CART_BUTTON_NAME)) {
-            return true;
-        }
-        return false;
+        return actualButtonName.contains(ADD_TO_CART_BUTTON_NAME);
     }
 
-    public boolean IsRemoveBtnNameDisplayed(String productName) {
+    public boolean isRemoveBtnNameDisplayed(String productName) {
         String actualButtonName = driver.findElement(By.xpath(String.format(REMOVE_BUTTON_LOCATOR, productName))).getText();
-        if (actualButtonName.contains(REMOVE_BUTTON_NAME)) {
-            return true;
-        }
-        return false;
+        return actualButtonName.contains(REMOVE_BUTTON_NAME);
     }
 }

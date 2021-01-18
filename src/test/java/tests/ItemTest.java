@@ -14,7 +14,7 @@ public class ItemTest extends BaseTest {
                 .waitForPageOpened()
                 .addProductToCart(SAUCE_LABS_BACKPACK_ITEM_NAME)
                 .openItemPage(SAUCE_LABS_BACKPACK_ITEM_NAME);
-        assertTrue(itemPage.IsRemoveBtnDisplayed(), "Remove button is not displayed");
+        assertTrue(itemPage.isRemoveBtnDisplayed(), "Remove button is not displayed");
     }
 
     @Test(description = "Item should be added to the shopping cart")
@@ -24,7 +24,7 @@ public class ItemTest extends BaseTest {
                 .addItemToCart();
         String actualCartCounter = productPage.getShoppingCartNumberFromCounter();
         assertEquals(actualCartCounter, "1", "Wrong number in the cart counter: " + actualCartCounter);
-        assertTrue(itemPage.IsRemoveBtnDisplayed(), "Remove button is not displayed");
+        assertTrue(itemPage.isRemoveBtnDisplayed(), "Remove button is not displayed");
     }
 
     @Test(description = "Item should be removed from shopping cart in the Item page")
@@ -33,7 +33,7 @@ public class ItemTest extends BaseTest {
                 .waitForPageOpened()
                 .addItemToCart()
                 .removeItemFromCart();
-        assertTrue(itemPage.IsAddToCartBtnDisplayed(), "Add To Cart button is not displayed");
+        assertTrue(itemPage.isAddToCartBtnDisplayed(), "Add To Cart button is not displayed");
     }
 
     @Test(description = "Products page should be opened after clicking back btn")

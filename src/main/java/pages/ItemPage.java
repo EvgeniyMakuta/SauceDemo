@@ -56,17 +56,15 @@ public class ItemPage extends BasePage {
         return driver.findElement(ITEM_PRICE_LOCATOR).getText();
     }
 
-    public boolean IsAddToCartBtnDisplayed() {
+    public boolean isAddToCartBtnDisplayed() {
         return driver.findElement(ADD_TO_CART_BUTTON_LOCATOR).isDisplayed();
     }
 
-    public boolean IsRemoveBtnDisplayed() {
+    public boolean isRemoveBtnDisplayed() {
         return driver.findElement(REMOVE_BUTTON_LOCATOR).isDisplayed();
     }
 
     public boolean isPageOpened() {
-        if (driver.findElement(BACK_BUTTON_LOCATOR).isDisplayed()) {
-            return true;
-        } else return false;
+        return driver.findElement(BACK_BUTTON_LOCATOR).isDisplayed();
     }
 }

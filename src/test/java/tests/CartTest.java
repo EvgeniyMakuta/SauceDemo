@@ -18,7 +18,7 @@ public class CartTest extends BaseTest {
         assertTrue(productPage.isPageOpened(), "Product page is not opened. Locator is not found: " + PRODUCT_LABEL_LOCATOR);
     }
 
-    @Test(description = "Item should be removed from the shopping cartffffff")
+    @Test(description = "Item should be removed from the shopping cart")
     public void itemShouldBeRemovedFromCart() {
         productPage.openPage()
                 .waitForPageOpened()
@@ -42,7 +42,7 @@ public class CartTest extends BaseTest {
         String actualItemName = itemPage.getItemName();
         assertEquals(actualItemName, SAUCE_LABS_FLEECE_JACKET_ITEM_NAME, "Wrong item page is opened: " + SAUCE_LABS_FLEECE_JACKET_ITEM_NAME);
         assertEquals(actualItemPrice, "$" + SAUCE_LABS_FLEECE_JACKET_ITEM_PRICE);
-        assertTrue(itemPage.IsRemoveBtnDisplayed(), "Remove button is not displayed");
+        assertTrue(itemPage.isRemoveBtnDisplayed(), "Remove button is not displayed");
     }
 
     @Test(description = "Checkout info page should be opened")

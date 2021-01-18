@@ -65,16 +65,16 @@ public class ProductsTest extends BaseTest {
         String actualItemName = itemPage.getItemName();
         assertEquals(actualItemName, SAUCE_LABS_BACKPACK_ITEM_NAME, "Wrong item page is opened: " + SAUCE_LABS_BACKPACK_ITEM_NAME);
         assertEquals(actualItemPrice, "$" + SAUCE_LABS_BACKPACK_ITEM_PRICE);
-        assertTrue(itemPage.IsAddToCartBtnDisplayed(), "Add To Cart button is not displayed");
+        assertTrue(itemPage.isAddToCartBtnDisplayed(), "Add To Cart button is not displayed");
     }
 
     @Test(description = "Button Add/Remove product should change name after adding/removing product")
     public void buttonToAddRemoveProductShouldChangeNameAfterAddingRemovingProduct() {
         productPage.openPage()
                 .waitForPageOpened();
-        boolean actualAddRemoveBtnBeforeAddingItemToCart = productPage.IsAddToCartBtnNameDisplayed(SAUCE_LABS_BACKPACK_ITEM_NAME);
+        boolean actualAddRemoveBtnBeforeAddingItemToCart = productPage.isAddToCartBtnNameDisplayed(SAUCE_LABS_BACKPACK_ITEM_NAME);
         productPage.addProductToCart(SAUCE_LABS_BACKPACK_ITEM_NAME);
-        boolean actualAddRemoveBtnAfterAddingItemToCart = productPage.IsRemoveBtnNameDisplayed(SAUCE_LABS_BACKPACK_ITEM_NAME);
+        boolean actualAddRemoveBtnAfterAddingItemToCart = productPage.isRemoveBtnNameDisplayed(SAUCE_LABS_BACKPACK_ITEM_NAME);
         assertTrue(actualAddRemoveBtnBeforeAddingItemToCart);
         assertTrue(actualAddRemoveBtnAfterAddingItemToCart);
     }
