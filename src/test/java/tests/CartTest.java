@@ -4,55 +4,56 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static tests.base.Constants.*;
+import static pages.CheckoutInfoPage.CONTINUE_BTN_LOCATOR;
+import static pages.ProductPage.PRODUCT_LABEL_LOCATOR;
 
 public class CartTest extends BaseTest {
 
     @Test(description = "Returning to Products page from Shopping cart to continue shopping")
     public void returnToProductsPageWhenClickingContinueShoppingBtn() {
-        cartPage.openPage();
-        cartPage.isPageOpened();
-        cartPage.clickContinueShoppingBtn();
-        productPage.isPageOpened();
+        cartPage.openPage()
+                .waitForPageOpened()
+                .clickContinueShoppingBtn()
+                .waitForPageOpened();
+        assertTrue(productPage.isPageOpened(), "Product page is not opened. Locator is not found: " + PRODUCT_LABEL_LOCATOR);
     }
 
-    @Test(description = "Item should be removed from the shopping cartffffff")
+    @Test(description = "Item should be removed from the shopping cart")
     public void itemShouldBeRemovedFromCart() {
-        productPage.openPage();
-        productPage.isPageOpened();
-        productPage.addProductToCart(SAUCE_LABS_BACKPACK_ITEM_NAME);
-        cartPage.openPage();
-        cartPage.isPageOpened();
-        cartPage.removeItemFromCart(SAUCE_LABS_BACKPACK_ITEM_NAME);
-
-        assertTrue(cartPage.cartIsEmpty(), "Cart is not empty");
+        productPage.openPage()
+                .waitForPageOpened()
+                .addProductToCart(SAUCE_LABS_BACKPACK_ITEM_NAME);
+        cartPage.openPage()
+                .waitForPageOpened()
+                .removeItemFromCart(SAUCE_LABS_BACKPACK_ITEM_NAME);
+        assertTrue(cartPage.isCartEmpty(), "Cart is not empty");
     }
 
     @Test(description = "Item page should be opened by tapping on the product name")
     public void itemPageShouldBeOpenedByClickingOnItemName() {
-        productPage.openPage();
-        productPage.isPageOpened();
-        productPage.addProductToCart(SAUCE_LABS_FLEECE_JACKET_ITEM_NAME);
-        cartPage.openPage();
-        cartPage.isPageOpened();
-        cartPage.openItemPageFromCart(SAUCE_LABS_FLEECE_JACKET_ITEM_NAME);
-        itemPage.isPageOpened();
+        productPage.openPage()
+                .waitForPageOpened()
+                .addProductToCart(SAUCE_LABS_FLEECE_JACKET_ITEM_NAME);
+        cartPage.openPage()
+                .waitForPageOpened()
+                .openItemPageFromCart(SAUCE_LABS_FLEECE_JACKET_ITEM_NAME)
+                .waitForPageOpened();
         String actualItemPrice = itemPage.getItemPrice();
         String actualItemName = itemPage.getItemName();
-
         assertEquals(actualItemName, SAUCE_LABS_FLEECE_JACKET_ITEM_NAME, "Wrong item page is opened: " + SAUCE_LABS_FLEECE_JACKET_ITEM_NAME);
         assertEquals(actualItemPrice, "$" + SAUCE_LABS_FLEECE_JACKET_ITEM_PRICE);
-        assertTrue(itemPage.removeBtnIsDisplayed(), "Remove button is not displayed");
+        assertTrue(itemPage.isRemoveBtnDisplayed(), "Remove button is not displayed");
     }
 
     @Test(description = "Checkout info page should be opened")
     public void checkoutInfoPageShouldBeOpened() {
-        productPage.openPage();
-        productPage.isPageOpened();
-        productPage.addProductToCart(SAUCE_LABS_FLEECE_JACKET_ITEM_NAME);
-        cartPage.openPage();
-        cartPage.isPageOpened();
-        cartPage.clickCheckoutBtn();
-        checkoutInfoPage.isPageOpened();
+        productPage.openPage()
+                .waitForPageOpened()
+                .addProductToCart(SAUCE_LABS_FLEECE_JACKET_ITEM_NAME);
+        cartPage.openPage()
+                .waitForPageOpened()
+                .clickCheckoutBtn()
+                .waitForPageOpened();
+        assertTrue(checkoutInfoPage.isPageOpened(), "CheckoutInfoPage is not opened. Locator is not found: " + CONTINUE_BTN_LOCATOR);
     }
 }
