@@ -7,14 +7,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import pages.*;
 import tests.test_data.TestConstants;
 import utils.CapabilitiesGenerator;
+import utils.TestListener;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
 
+@Listeners(TestListener.class)
 public class BaseTest implements TestConstants {
     WebDriver driver;
     LoginPage loginPage;
