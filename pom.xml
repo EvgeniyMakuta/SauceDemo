@@ -37,6 +37,11 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
+                    <systemPropertyVariables>
+                        <allure.results.directory>target/allure-results</allure.results.directory>
+                        <allure.link.issue.pattern>https://jira.com</allure.link.issue.pattern>
+                        <allure.link.tms.pattern>https://wiki.com</allure.link.tms.pattern>
+                    </systemPropertyVariables>
                     <argLine>
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar
                         -Xmx256m
