@@ -14,7 +14,7 @@ public class LoginTest extends BaseTest {
     public void isSuccessfulLogin() {
         loginPageFactory.openPage()
                 .waitForPageOpened()
-                .login(USERNAME, PASSWORD)
+                .login(System.getenv("username"), System.getenv("password"))
                 .waitForPageOpened();
         assertTrue(productPage.isPageOpened(), "Product page is not opened. Locator is not found: " + PRODUCT_LABEL_LOCATOR);
     }
