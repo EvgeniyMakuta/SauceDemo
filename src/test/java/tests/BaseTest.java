@@ -9,6 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.*;
+import steps.LoginStep;
 import tests.test_data.TestConstants;
 import utils.CapabilitiesGenerator;
 import utils.TestListener;
@@ -20,13 +21,13 @@ import static org.testng.Assert.fail;
 @Listeners(TestListener.class)
 public class BaseTest implements TestConstants {
     WebDriver driver;
-    LoginPage loginPage;
     ProductPage productPage;
     CartPage cartPage;
     ItemPage itemPage;
     CheckoutInfoPage checkoutInfoPage;
     CheckoutOverviewPage checkoutOverviewPage;
     LoginPageFactory loginPageFactory;
+    protected LoginStep loginStep;
     private Logger log;
 
     @BeforeMethod(description = "Setting up before test")
@@ -38,6 +39,7 @@ public class BaseTest implements TestConstants {
             fail("Browser is not opened");
             log.fatal(e.getLocalizedMessage());
         }
+        loginStep = new LoginStep(driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         createInstances();
@@ -51,7 +53,6 @@ public class BaseTest implements TestConstants {
     }
 
     public void createInstances() {
-        loginPage = new LoginPage(driver);
         productPage = new ProductPage(driver);
         cartPage = new CartPage(driver);
         itemPage = new ItemPage(driver);
