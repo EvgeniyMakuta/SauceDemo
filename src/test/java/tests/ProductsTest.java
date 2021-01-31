@@ -9,9 +9,9 @@ public class ProductsTest extends BaseTest {
 
     @Test(description = "Products should be added into shopping cart")
     public void productsShouldBeAddedToCart() {
-        productPage.openPage()
-                .waitForPageOpened()
-                .addProductToCart(SAUCE_LABS_BACKPACK_ITEM_NAME)
+        productStep
+                .addItemToCart(SAUCE_LABS_BACKPACK_ITEM_NAME);
+        productPage
                 .addProductToCart(SAUCE_LABS_BOLT_T_SHIRT_ITEM_NAME)
                 .addProductToCart(SAUCE_LABS_FLEECE_JACKET_ITEM_NAME);
         cartPage.openPage()
@@ -23,9 +23,9 @@ public class ProductsTest extends BaseTest {
 
     @Test(description = "Products should be removed from shopping cart in Products page ")
     public void productsShouldBeRemovedFromCart() {
-        productPage.openPage()
-                .waitForPageOpened()
-                .addProductToCart(SAUCE_LABS_BACKPACK_ITEM_NAME)
+        productStep
+                .addItemToCart(SAUCE_LABS_BACKPACK_ITEM_NAME);
+        productPage
                 .addProductToCart(SAUCE_LABS_BOLT_T_SHIRT_ITEM_NAME)
                 .removeProductFromCart(SAUCE_LABS_BACKPACK_ITEM_NAME)
                 .clickShoppingCartIcon();
@@ -36,9 +36,9 @@ public class ProductsTest extends BaseTest {
 
     @Test(description = "Product count in shopping cart should be increased")
     public void productCountInShoppingCartShouldBeIncreased() {
-        productPage.openPage()
-                .waitForPageOpened()
-                .addProductToCart(SAUCE_LABS_BACKPACK_ITEM_NAME)
+        productStep
+                .addItemToCart(SAUCE_LABS_BACKPACK_ITEM_NAME);
+        productPage
                 .addProductToCart(SAUCE_LABS_BOLT_T_SHIRT_ITEM_NAME);
         String actualCartCounter = productPage.getShoppingCartNumberFromCounter();
         assertEquals(actualCartCounter, "2", "Wrong number in the cart counter: " + actualCartCounter);
@@ -46,9 +46,9 @@ public class ProductsTest extends BaseTest {
 
     @Test(description = "Product count in shopping cart should be decreased")
     public void productCountInShoppingCartShouldBeDecreased() {
-        productPage.openPage()
-                .waitForPageOpened()
-                .addProductToCart(SAUCE_LABS_BACKPACK_ITEM_NAME)
+        productStep
+                .addItemToCart(SAUCE_LABS_BACKPACK_ITEM_NAME);
+        productPage
                 .addProductToCart(SAUCE_LABS_BOLT_T_SHIRT_ITEM_NAME)
                 .removeProductFromCart(SAUCE_LABS_BOLT_T_SHIRT_ITEM_NAME);
         String actualCartCounter = productPage.getShoppingCartNumberFromCounter();

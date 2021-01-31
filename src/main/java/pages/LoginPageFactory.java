@@ -41,7 +41,7 @@ public class LoginPageFactory extends BasePage {
         return this;
     }
 
-    @Step("Login")
+    @Step("Login with username: '{username}' and password: '{password}' ")
     public ProductPage login(String username, String password) {
         attemptToLogin(username, password);
         return new ProductPage(driver);
