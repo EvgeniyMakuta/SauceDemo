@@ -34,11 +34,12 @@ public class ProductPage extends BasePage {
         }
         return this;
     }
-     public boolean isPageOpened() {
+
+    public boolean isPageOpened() {
         if (driver.findElement(PRODUCT_LABEL_LOCATOR).isDisplayed()) {
             return true;
         } else return false;
-     }
+    }
 
     public ProductPage addProductToCart(String productName) {
         driver.findElement(By.xpath(String.format(ADD_TO_CART_BUTTON_LOCATOR, productName))).click();

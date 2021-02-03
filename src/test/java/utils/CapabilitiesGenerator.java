@@ -10,7 +10,7 @@ public class CapabilitiesGenerator {
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-notifications");
-        options.addArguments("--headless");
+//        options.addArguments("--headless");
         options.addArguments("-incognito");
         options.setAcceptInsecureCerts(true);
         options.addArguments("--disable-extensions");

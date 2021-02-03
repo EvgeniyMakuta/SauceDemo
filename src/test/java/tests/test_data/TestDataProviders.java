@@ -2,10 +2,10 @@ package tests.test_data;
 
 import org.testng.annotations.DataProvider;
 
-public class TestDataProviders implements TestConstants{
+public class TestDataProviders implements TestConstants {
 
     @DataProvider(name = "InvalidTestDataFotLogin")
-    public  static Object[][] testDataForLogin() {
+    public static Object[][] testDataForLogin() {
         return new Object[][]{
                 {"", PASSWORD, "Epic sadface: Username is required"},
                 {USERNAME, "", "Epic sadface: Password is required"},

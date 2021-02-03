@@ -19,6 +19,7 @@
         <allure-maven.version>2.10.0</allure-maven.version>
         <allure-testng.version>2.7.0</allure-testng.version>
         <io.github.bonigarcia.version>4.2.2</io.github.bonigarcia.version>
+        <!--        <suiteXmlFile></suiteXmlFile>-->
     </properties>
     <build>
         <plugins>
@@ -46,9 +47,9 @@
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar
                         -Xmx256m
                     </argLine>
-                    <!--                    <suiteXmlFiles>-->
-                    <!--                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
-                    <!--                    </suiteXmlFiles>-->
+                    <!--                                        <suiteXmlFiles>-->
+                    <!--                                            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
+                    <!--                                        </suiteXmlFiles>-->
                 </configuration>
                 <dependencies>
                     <dependency>
