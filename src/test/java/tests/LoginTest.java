@@ -3,6 +3,7 @@ package tests;
 import org.testng.annotations.Test;
 import tests.test_data.TestDataProviders;
 import utils.Retry;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static pages.ProductPage.PRODUCT_LABEL_LOCATOR;

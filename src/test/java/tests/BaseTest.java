@@ -21,6 +21,7 @@ import static org.testng.Assert.fail;
 
 @Listeners(TestListener.class)
 public class BaseTest implements TestConstants {
+    protected ProductStep productStep;
     WebDriver driver;
     ProductPage productPage;
     CartPage cartPage;
@@ -28,7 +29,6 @@ public class BaseTest implements TestConstants {
     CheckoutInfoPage checkoutInfoPage;
     CheckoutOverviewPage checkoutOverviewPage;
     LoginPageFactory loginPageFactory;
-    protected ProductStep productStep;
     private Logger log;
 
     @BeforeMethod(description = "Setting up before test")

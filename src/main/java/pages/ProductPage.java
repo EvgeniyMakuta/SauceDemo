@@ -44,7 +44,7 @@ public class ProductPage extends BasePage {
         } else return false;
     }
 
-     @Step("Add Item to shopping cart")
+    @Step("Add Item to shopping cart")
     public ProductPage addProductToCart(String productName) {
         driver.findElement(By.xpath(String.format(ADD_TO_CART_BUTTON_LOCATOR, productName))).click();
         return this;
