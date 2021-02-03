@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +21,8 @@ public class ProductPage extends BasePage {
         super(driver);
     }
 
+    @Override
+    @Step("Open Product page")
     public ProductPage openPage() {
         openPage(BASE_URL + PRODUCTS_ENDPOINT);
         return this;
@@ -41,21 +44,25 @@ public class ProductPage extends BasePage {
         } else return false;
     }
 
+     @Step("Add Item to shopping cart")
     public ProductPage addProductToCart(String productName) {
         driver.findElement(By.xpath(String.format(ADD_TO_CART_BUTTON_LOCATOR, productName))).click();
         return this;
     }
 
+    @Step("Remove Item from shopping cart")
     public ProductPage removeProductFromCart(String productName) {
         driver.findElement(By.xpath(String.format(REMOVE_BUTTON_LOCATOR, productName))).click();
         return this;
     }
 
+    @Step("Click shopping cart icon")
     public CartPage clickShoppingCartIcon() {
         driver.findElement(CART_ICON_LOCATOR).click();
         return new CartPage(driver);
     }
 
+    @Step("Open item page")
     public ItemPage openItemPage(String productName) {
         driver.findElement(By.xpath(String.format(PRODUCT_NAME_LOCATOR, productName))).click();
         return new ItemPage(driver);
