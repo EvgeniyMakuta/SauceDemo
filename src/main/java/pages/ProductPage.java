@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.testng.Assert.fail;
 
+@Log4j2
 public class ProductPage extends BasePage {
     public static final String COMMON_PATH_FOR_ADD_REMOVE_BUTTON = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item']";
     public static final String ADD_TO_CART_BUTTON_LOCATOR = COMMON_PATH_FOR_ADD_REMOVE_BUTTON + "//button[contains(@class, 'btn_primary')]";
@@ -46,12 +48,14 @@ public class ProductPage extends BasePage {
 
     @Step("Add Item to shopping cart")
     public ProductPage addProductToCart(String productName) {
+        log.info("Add product: " + productName + " to cart");
         driver.findElement(By.xpath(String.format(ADD_TO_CART_BUTTON_LOCATOR, productName))).click();
         return this;
     }
 
     @Step("Remove Item from shopping cart")
     public ProductPage removeProductFromCart(String productName) {
+        log.info("Remove product: " + productName + " from cart");
         driver.findElement(By.xpath(String.format(REMOVE_BUTTON_LOCATOR, productName))).click();
         return this;
     }

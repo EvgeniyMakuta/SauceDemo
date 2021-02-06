@@ -7,9 +7,9 @@ public class CapabilitiesGenerator {
     public static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
 
-        if (System.getProperty("headless").equals(true)) {
-            options.addArguments("--headless");
-        }
+//        if (System.getProperty("headless").equals(true)) {
+//            options.addArguments("--headless");
+//        }
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-notifications");

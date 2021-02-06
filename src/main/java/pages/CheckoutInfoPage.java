@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.testng.Assert.fail;
 
+@Log4j2
 public class CheckoutInfoPage extends BasePage {
     public static final By CONTINUE_BTN_LOCATOR = By.cssSelector("[type=submit]");
     public static final By CANCEL_BTN_LOCATOR = By.cssSelector(".cart_cancel_link");
@@ -45,12 +47,14 @@ public class CheckoutInfoPage extends BasePage {
 
     @Step("Click continue shopping button")
     public CheckoutOverviewPage continueCheckout() {
+        log.info("continue checkout");
         driver.findElement(CONTINUE_BTN_LOCATOR).click();
         return new CheckoutOverviewPage(driver);
     }
 
     @Step("Cancel checkout")
     public ProductPage cancelCheckout() {
+        log.info("Cancel checkout");
         driver.findElement(CANCEL_BTN_LOCATOR).click();
         return new ProductPage(driver);
     }
@@ -75,6 +79,7 @@ public class CheckoutInfoPage extends BasePage {
     }
 
     public CheckoutInfoPage attemptToCheckout(String firstName, String lastName, String zipCode) {
+        log.info("Input firstname: " + firstName + " / lastname: " + lastName + " / zipcode: " + zipCode);
         inputFirstName(firstName);
         inputLastName(lastName);
         inputZipCode(zipCode);

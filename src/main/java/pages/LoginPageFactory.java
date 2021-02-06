@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.testng.Assert.fail;
 
+@Log4j2
 public class LoginPageFactory extends BasePage {
 
     @FindBy(xpath = "//*[@data-test='username']")
@@ -49,11 +51,12 @@ public class LoginPageFactory extends BasePage {
 
     @Step("Attempt to login")
     public LoginPageFactory attemptToLogin(String username, String password) {
+        log.info(String.format("Logging with username '%s' and password '%s'", username, password));
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginBtn.click();
         return this;
-    }
+     }
 
     public String getErrorMessage() {
         return errorMsg.getText();

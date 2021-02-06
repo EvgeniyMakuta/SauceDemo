@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import static org.testng.Assert.fail;
 
+@Log4j2
 public class CartPage extends BasePage {
     public static final By CHECKOUT_BTN_LOCATOR = By.cssSelector(".checkout_button");
     public static final By CONTINUE_SHOPPING_BTN_LOCATOR = By.xpath("//*[@class='btn_secondary'][text()='Continue Shopping']");
@@ -62,13 +64,13 @@ public class CartPage extends BasePage {
 
     public String getItemPrice(String productName) {
         String productPrice = driver.findElement(By.xpath(String.format(ITEM_PRICE_LOCATOR, productName))).getText();
-        System.out.println("Product: " + productName + " - " + "Actual Price: " + productPrice);
+        log.info("Get  price for product: " + productName + " - " + "Actual Price: " + productPrice);
         return productPrice;
     }
 
     public String getItemQuantity(String productName) {
         String productQuantity = driver.findElement(By.xpath(String.format(ITEM_QUANTITY_LOCATOR, productName))).getText();
-        System.out.println("Product: " + productName + " - " + "Actual Quantity: " + productQuantity);
+        log.info("Get quantity for product: " + productName + " - " + "Actual Price: " + productQuantity);
         return productQuantity;
     }
 
@@ -80,6 +82,7 @@ public class CartPage extends BasePage {
 
     @Step("Open item from shopping cart")
     public ItemPage openItemPageFromCart(String productName) {
+        log.info("Open page for product: " + productName);
         driver.findElement(By.xpath(String.format(ITEM_NAME_LOCATOR, productName))).click();
         return new ItemPage(driver);
     }
