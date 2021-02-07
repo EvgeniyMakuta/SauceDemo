@@ -2,7 +2,7 @@ package tests;
 
 import org.testng.annotations.Test;
 import tests.test_data.TestDataProviders;
-import utils.Retry;
+import utils.*;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -15,7 +15,7 @@ public class LoginTest extends BaseTest {
         loginPageFactory.openPage()
                 .waitForPageOpened()
                 .login(USERNAME, PASSWORD)
-                // .login(System.getenv().getOrDefault("username", PropertyReader.getProperty("username")), System.getenv().getOrDefault("password", PropertyReader.getProperty("password")))
+//                 .login(System.getenv().getOrDefault("username", PropertyReader.getProperty("username")), System.getenv().getOrDefault("password", PropertyReader.getProperty("password")))
                 .waitForPageOpened();
         assertTrue(productPage.isPageOpened(), "Product page is not opened. Locator is not found: " + PRODUCT_LABEL_LOCATOR);
     }
