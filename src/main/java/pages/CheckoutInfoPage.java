@@ -80,11 +80,11 @@ public class CheckoutInfoPage extends BasePage {
     }
 
     public CheckoutInfoPage attemptToCheckout(String firstName, String lastName, String zipCode) {
-        log.debug(String.format("Inputting firstname %s with locator: %s", firstName, FIRSTNAME_INPUT_LOCATOR));
+        log.debug(String.format("Typing firstname %s with locator: %s", firstName, FIRSTNAME_INPUT_LOCATOR));
         inputFirstName(firstName);
-        log.debug(String.format("Inputting lastName %s with locator: %s", lastName, LASTNAME_INPUT_LOCATOR));
+        log.debug(String.format("Typing lastName %s with locator: %s", lastName, LASTNAME_INPUT_LOCATOR));
         inputLastName(lastName);
-        log.debug(String.format("Inputting zipCode %s with locator: %s", zipCode, ZIPCODE_INPUT_LOCATOR));
+        log.debug(String.format("Typing zipCode %s with locator: %s", zipCode, ZIPCODE_INPUT_LOCATOR));
         inputZipCode(zipCode);
         continueCheckout();
         return this;

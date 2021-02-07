@@ -10,12 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 abstract class BasePage implements Constants {
     WebDriver driver;
     WebDriverWait wait;
-    int webDriverWaitValue = 20;
+    private static final int WAIT_VALUE = 20;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, webDriverWaitValue);
-        log.debug("Webdriver wait Timeout = " + webDriverWaitValue);
+        wait = new WebDriverWait(driver, WAIT_VALUE);
+        log.debug("Webdriver wait Timeout = " + WAIT_VALUE);
         PageFactory.initElements(driver, this);
     }
 
