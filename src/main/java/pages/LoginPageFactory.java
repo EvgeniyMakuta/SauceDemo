@@ -38,6 +38,7 @@ public class LoginPageFactory extends BasePage {
         try {
             wait.until(ExpectedConditions.visibilityOf(loginBtn));
         } catch (TimeoutException e) {
+            log.error(String.format("Login page is not opened. Locator %s in not found", loginBtn));
             fail("Page is not loaded. Not found locator: " + loginBtn);
         }
         return this;

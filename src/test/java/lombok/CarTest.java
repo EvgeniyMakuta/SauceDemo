@@ -17,7 +17,7 @@ public class CarTest {
                 .version("model 3")
                 .build();
         Car car1 = new Car("Tesla", "model 3", 200);
-        Car car2 = new Car("Tesla", "model 3", 200);
+        Car car2 = new Car("Tesla", "model   3", 200);
         Car car3 = new Car();
         car3.setModel("BMW");
         car3.setVersion("X5");

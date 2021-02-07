@@ -1,7 +1,7 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
 
+@Log4j2
 @Listeners(TestListener.class)
 public class BaseTest implements TestConstants {
     protected ProductStep productStep;
@@ -29,7 +30,6 @@ public class BaseTest implements TestConstants {
     CheckoutInfoPage checkoutInfoPage;
     CheckoutOverviewPage checkoutOverviewPage;
     LoginPageFactory loginPageFactory;
-    private Logger log;
 
     @BeforeMethod(description = "Setting up before test")
     public void setUp(ITestContext context) {
@@ -37,15 +37,16 @@ public class BaseTest implements TestConstants {
         try {
             driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         } catch (SessionNotCreatedException e) {
-            fail("Browser is not opened");
             log.fatal(e.getLocalizedMessage());
+            fail("Browser is not opened");
         }
         productStep = new ProductStep(driver);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
+        log.debug("Setting implicit wait timeout =  " + IMPLICIT_WAIT);
         createInstances();
         String variable = "driver";
-        System.out.println("Setting driver into context with variable name " + variable);
+        log.debug("Setting driver into context with variable name " + variable);
         context.setAttribute(variable, driver);
     }
 

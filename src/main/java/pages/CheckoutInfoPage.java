@@ -34,6 +34,7 @@ public class CheckoutInfoPage extends BasePage {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_BTN_LOCATOR));
         } catch (TimeoutException r) {
+            log.error(String.format("CheckoutInfo page is not opened. Locator %s in not found", CONTINUE_BTN_LOCATOR));
             fail("Cart page is not loaded. Locator " + CONTINUE_BTN_LOCATOR + " is not found");
         }
         return this;
@@ -47,14 +48,14 @@ public class CheckoutInfoPage extends BasePage {
 
     @Step("Click continue shopping button")
     public CheckoutOverviewPage continueCheckout() {
-        log.info("continue checkout");
+        log.info(String.format("Clicking 'continue' button. Locator: %s", CONTINUE_BTN_LOCATOR));
         driver.findElement(CONTINUE_BTN_LOCATOR).click();
         return new CheckoutOverviewPage(driver);
     }
 
     @Step("Cancel checkout")
     public ProductPage cancelCheckout() {
-        log.info("Cancel checkout");
+        log.info(String.format("Canceling checkout. Locator: %s", CANCEL_BTN_LOCATOR));
         driver.findElement(CANCEL_BTN_LOCATOR).click();
         return new ProductPage(driver);
     }
@@ -79,9 +80,11 @@ public class CheckoutInfoPage extends BasePage {
     }
 
     public CheckoutInfoPage attemptToCheckout(String firstName, String lastName, String zipCode) {
-        log.info("Input firstname: " + firstName + " / lastname: " + lastName + " / zipcode: " + zipCode);
+        log.debug(String.format("Inputting firstname %s with locator: %s", firstName, FIRSTNAME_INPUT_LOCATOR));
         inputFirstName(firstName);
+        log.debug(String.format("Inputting lastName %s with locator: %s", lastName, LASTNAME_INPUT_LOCATOR));
         inputLastName(lastName);
+        log.debug(String.format("Inputting zipCode %s with locator: %s", zipCode, ZIPCODE_INPUT_LOCATOR));
         inputZipCode(zipCode);
         continueCheckout();
         return this;

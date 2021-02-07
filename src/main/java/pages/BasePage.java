@@ -10,17 +10,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 abstract class BasePage implements Constants {
     WebDriver driver;
     WebDriverWait wait;
-    int implicitValue = 20;
+    int webDriverWaitValue = 20;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, implicitValue);
-        log.debug("Implicit Timeout = " + implicitValue);
+        wait = new WebDriverWait(driver, webDriverWaitValue);
+        log.debug("Webdriver wait Timeout = " + webDriverWaitValue);
         PageFactory.initElements(driver, this);
     }
 
     public BasePage openPage(String url) {
-        log.info("Open url: " + url);
+        log.info(String.format("Opening page with url: %s. Located in: %s", url, getClass()));
         driver.get(url);
         return this;
     }
